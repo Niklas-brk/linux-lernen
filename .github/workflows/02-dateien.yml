@@ -1,5 +1,5 @@
-# Linux CI — Beispielcode
-# Lizenz: MIT (siehe LICENSE-CODE.txt im Kurs-Repository)
+
+# Linux CI — Dateien und Ordner
 name: 02 - Dateien und Ordner
 
 on:
@@ -8,6 +8,7 @@ on:
 jobs:
   dateien:
     runs-on: ubuntu-latest
+
     steps:
       - name: Repo auschecken
         uses: actions/checkout@v7
@@ -33,6 +34,15 @@ jobs:
           cp daten/einkauf.txt arbeit/kopie.txt
           mv arbeit/kopie.txt arbeit/liste.txt
           ls arbeit
+          mkdir -p backup
+          cp daten/einkauf.txt backup/einkauf.txt
+          ls backup
+
+      - name: Butter hinzufügen
+        run: |
+          echo "Butter" >> arbeit/liste.txt
+          cat arbeit/liste.txt
+          wc -l arbeit/liste.txt
 
       - name: Temporäre Datei löschen
         run: |
@@ -40,9 +50,11 @@ jobs:
           echo "--- nach dem Löschen ---"
           ls arbeit
 
-      - name: Wiederholtes mkdir ohne -p testen
+      - name: Wiederholtes mkdir mit -p testen
         continue-on-error: true
         run: |
-          mkdir testordner
-          mkdir testordner
+          mkdir -p testordner-p
+          mkdir -p testordner-p
+          echo "Beide Befehle erfolgreich ausgeführt"
+
           echo "Dieser Befehl wird nach dem Fehler nicht ausgeführt"
