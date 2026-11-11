@@ -26,11 +26,24 @@ jobs:
           echo "Erste Notiz" > arbeit/notizen.txt
           ls -l arbeit
 
-      - name: Kopieren, umbenennen, löschen
+      - name: Kopieren und umbenennen
         run: |
           cp daten/einkauf.txt arbeit/kopie.txt
           mv arbeit/kopie.txt arbeit/liste.txt
           ls arbeit
+
+      - name: Temporäre Datei löschen
+        run: |
+          rm arbeit/notizen.txt
+          echo "--- nach dem Löschen ---"
+          ls arbeit
+
+      - name: Wiederholtes mkdir ohne -p testen
+        continue-on-error: true
+        run: |
+          mkdir testordner
+          mkdir testordner
+          echo "Dieser Befehl wird nach dem Fehler nicht ausgeführt"
           rm arbeit/notizen.txt
           echo "--- nach dem Löschen ---"
           ls arbeit
