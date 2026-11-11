@@ -1,3 +1,5 @@
+# Linux CI — Beispielcode
+# Lizenz: MIT (siehe LICENSE-CODE.txt im Kurs-Repository)
 name: 02 - Dateien und Ordner
 
 on:
@@ -44,6 +46,3 @@ jobs:
           mkdir testordner
           mkdir testordner
           echo "Dieser Befehl wird nach dem Fehler nicht ausgeführt"
-          rm arbeit/notizen.txt
-          echo "--- nach dem Löschen ---"
-          ls arbeit
